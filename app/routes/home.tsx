@@ -1,7 +1,7 @@
 import type { Route } from "./+types/home";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
-import NSBE_Officers from "../images/NSBE_Officers.jpg";
+import NSBE_Officers from "../images/NSBE_Officers-min.webp";
 import NSBE_Logo from "../images/NSBE_Logo.png";
 
 export function meta({}: Route.MetaArgs) {
