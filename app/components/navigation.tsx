@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router";
+import NSBE_Logo from "../images/NSBE_Logo.png";
 
 export function Navigation() {
   const location = useLocation();
@@ -14,7 +15,7 @@ export function Navigation() {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
             <img 
-              src="/app/images/NSBE_Logo.png" 
+              src={NSBE_Logo} 
               alt="NSBE Logo" 
               className="h-8 w-auto"
             />

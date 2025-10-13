@@ -1,5 +1,8 @@
 import type { Route } from "./+types/home";
 import { Link } from "react-router";
+import { useState, useEffect } from "react";
+import NSBE_Officers from "../images/NSBE_Officers.jpg";
+import NSBE_Logo from "../images/NSBE_Logo.png";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,21 +11,72 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+// Scroll Popup Component
+function ScrollPopup({ isVisible, onScrollToTop }: { isVisible: boolean; onScrollToTop: () => void }) {
+  return (
+    <div 
+      className={`fixed bottom-8 right-8 z-50 transition-all duration-500 ease-in-out ${
+        isVisible 
+          ? 'opacity-100 translate-y-0 scale-100' 
+          : 'opacity-0 translate-y-4 scale-95 pointer-events-none'
+      }`}
+    >
+      <button
+        onClick={onScrollToTop}
+        className="group bg-[#009639] hover:bg-[#007a2f] text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
+        aria-label="Scroll to top"
+      >
+        <div className="flex flex-col items-center">
+          <svg 
+            className="w-6 h-6 transform group-hover:-translate-y-1 transition-transform duration-300" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </svg>
+          <span className="text-xs font-medium mt-1 opacity-90">Top</span>
+        </div>
+      </button>
+    </div>
+  );
+}
+
 export default function Home() {
+  const [showScrollPopup, setShowScrollPopup] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setShowScrollPopup(scrollTop > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <main className="min-h-screen bg-white dark:bg-gray-950">
+      <ScrollPopup isVisible={showScrollPopup} onScrollToTop={scrollToTop} />
       {/* Hero Section */}
       <section 
-        className="relative min-h-[80vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
+        className="relative min-h-[100vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/app/images/NSBE_Officers.JPG')"
+          backgroundImage: `url(${NSBE_Officers})`
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-black/75 to-black/60 z-10"></div>
         <div className="relative z-20 container mx-auto px-6 text-center">
           <div className="mb-8">
             <img 
-              src="/app/images/NSBE_Logo.png" 
+              src={NSBE_Logo} 
               alt="NSBE Logo" 
               className="h-24 md:h-32 mx-auto drop-shadow-2xl"
             />
