@@ -12,6 +12,13 @@ export default function Join() {
     <main className="min-h-screen bg-white dark:bg-gray-950">
       <section className="bg-black text-white py-24">
         <div className="container mx-auto px-6 text-center">
+          <div className="mb-8">
+            <img 
+              src="/app/images/NSBE_Logo.png" 
+              alt="NSBE Logo" 
+              className="h-20 w-auto mx-auto drop-shadow-2xl"
+            />
+          </div>
           <h1 className="text-5xl md:text-6xl font-display font-light mb-6">
             Join the Movement
           </h1>

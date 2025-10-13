@@ -5,6 +5,13 @@ export function Footer() {
     <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
       <div className="container mx-auto px-6 py-12">
         <div className="flex flex-col items-center space-y-6">
+          <div className="mb-4">
+            <img 
+              src="/app/images/NSBE_Logo.png" 
+              alt="NSBE Logo" 
+              className="h-16 w-auto mx-auto"
+            />
+          </div>
           <div className="flex gap-8">
             <a
               href="https://www.linkedin.com/company/nsbe-cu-denver"

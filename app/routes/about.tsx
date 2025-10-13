@@ -11,9 +11,16 @@ export default function About() {
   return (
     <main className="container mx-auto px-6 py-16">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-5xl font-display font-light text-gray-900 dark:text-white mb-16">
-          About NSBE
-        </h1>
+        <div className="text-center mb-16">
+          <img 
+            src="/app/images/NSBE_Logo.png" 
+            alt="NSBE Logo" 
+            className="h-20 w-auto mx-auto mb-8"
+          />
+          <h1 className="text-5xl font-display font-light text-gray-900 dark:text-white">
+            About NSBE
+          </h1>
+        </div>
         
         <div className="space-y-24">
           <section>

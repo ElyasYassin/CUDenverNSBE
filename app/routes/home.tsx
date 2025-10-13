@@ -12,28 +12,40 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white dark:bg-gray-950">
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center bg-black">
-        <div className="absolute inset-0 bg-gradient-to-br from-black/80 to-black/40 z-10"></div>
+      <section 
+        className="relative min-h-[80vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/app/images/NSBE_Officers.JPG')"
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-black/75 to-black/60 z-10"></div>
         <div className="relative z-20 container mx-auto px-6 text-center">
-          <h1 className="text-7xl md:text-8xl font-display font-light text-white mb-6 tracking-tight">
+          <div className="mb-8">
+            <img 
+              src="/app/images/NSBE_Logo.png" 
+              alt="NSBE Logo" 
+              className="h-24 md:h-32 mx-auto drop-shadow-2xl"
+            />
+          </div>
+          <h1 className="text-7xl md:text-8xl font-display font-light text-white mb-6 tracking-tight drop-shadow-2xl">
             NSBE
           </h1>
-          <p className="text-2xl md:text-3xl font-display font-light text-[#FFD100] mb-4">
+          <p className="text-2xl md:text-3xl font-display font-light text-[#FFD100] mb-4 drop-shadow-lg">
             Excellence. Impact. Leadership.
           </p>
-          <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-200 mb-12 max-w-2xl mx-auto drop-shadow-md">
             University of Colorado Denver Chapter
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/membership"
-              className="bg-[#FFD100] text-black px-8 py-4 font-display font-semibold hover:scale-105 transition-transform"
+              className="bg-[#FFD100] text-black px-8 py-4 font-display font-semibold hover:scale-105 transition-transform shadow-lg hover:shadow-xl"
             >
               Join NSBE
             </Link>
             <Link
               to="/events"
-              className="border border-[#009639] text-[#009639] px-8 py-4 font-display font-semibold hover:bg-[#009639] hover:text-white transition-colors"
+              className="border-2 border-white text-white px-8 py-4 font-display font-semibold hover:bg-white hover:text-black transition-all shadow-lg hover:shadow-xl backdrop-blur-sm bg-white/10"
             >
               View Events
             </Link>

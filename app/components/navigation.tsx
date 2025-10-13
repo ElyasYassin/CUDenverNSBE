@@ -12,8 +12,15 @@ export function Navigation() {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="text-gray-900 dark:text-white font-display font-light text-xl">
-            NSBE
+          <Link to="/" className="flex items-center space-x-3">
+            <img 
+              src="/app/images/NSBE_Logo.png" 
+              alt="NSBE Logo" 
+              className="h-8 w-auto"
+            />
+            <span className="text-gray-900 dark:text-white font-display font-light text-xl">
+              NSBE
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
