@@ -12,7 +12,7 @@ export function Navigation() {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="text-gray-900 dark:text-white font-light text-lg">
+          <Link to="/" className="text-gray-900 dark:text-white font-display font-light text-xl">
             NSBE
           </Link>
 
@@ -49,24 +49,24 @@ export function Navigation() {
               Events
             </Link>
             <Link
-              to="/membership"
+              to="/sponsors"
               className={`text-sm transition-colors ${
-                isActive("/membership")
+                isActive("/sponsors")
                   ? "text-gray-900 dark:text-white"
                   : "text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white"
               }`}
             >
-              Membership
+              Sponsors
             </Link>
             <Link
-              to="/resources"
+              to="/join"
               className={`text-sm transition-colors ${
-                isActive("/resources")
+                isActive("/join")
                   ? "text-gray-900 dark:text-white"
                   : "text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white"
               }`}
             >
-              Resources
+              Join
             </Link>
             <Link
               to="/contact"
@@ -128,24 +128,24 @@ export function Navigation() {
               Events
             </Link>
             <Link
-              to="/membership"
+              to="/sponsors"
               className={`block text-sm transition-colors ${
-                isActive("/membership")
+                isActive("/sponsors")
                   ? "text-gray-900 dark:text-white"
                   : "text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white"
               }`}
             >
-              Membership
+              Sponsors
             </Link>
             <Link
-              to="/resources"
+              to="/join"
               className={`block text-sm transition-colors ${
-                isActive("/resources")
+                isActive("/join")
                   ? "text-gray-900 dark:text-white"
                   : "text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-white"
               }`}
             >
-              Resources
+              Join
             </Link>
             <Link
               to="/contact"

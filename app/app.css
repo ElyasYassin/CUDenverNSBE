@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@300;400;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+
+  --color-nsbe-green: #009639;
+  --color-nsbe-gold: #FFD100;
+  --color-nsbe-red: #EF3340;
+  --color-nsbe-black: #000000;
 }
 
 html,
