@@ -1,4 +1,5 @@
 import type { Route } from "./+types/about";
+import NSBE_Logo from "../images/NSBE_Logo.png";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -13,7 +14,7 @@ export default function About() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <img 
-            src="/app/images/NSBE_Logo.png" 
+            src={NSBE_Logo} 
             alt="NSBE Logo" 
             className="h-20 w-auto mx-auto mb-8"
           />

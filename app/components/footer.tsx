@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import NSBE_Logo from "../images/NSBE_Logo.png";
 
 export function Footer() {
   return (
@@ -7,7 +8,7 @@ export function Footer() {
         <div className="flex flex-col items-center space-y-6">
           <div className="mb-4">
             <img 
-              src="/app/images/NSBE_Logo.png" 
+              src={NSBE_Logo} 
               alt="NSBE Logo" 
               className="h-16 w-auto mx-auto"
             />
