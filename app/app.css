@@ -20,3 +20,48 @@ body {
     color-scheme: dark;
   }
 }
+
+/* Image optimization and loading performance */
+img {
+  /* Prevent layout shift during image loading */
+  max-width: 100%;
+  height: auto;
+}
+
+/* Hero section optimizations */
+.hero-section {
+  /* Optimize for background image loading */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Improve rendering performance */
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+/* Progressive image loading */
+.image-loading {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-loaded {
+  opacity: 1;
+}
+
+/* Optimize for different screen densities */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero-section {
+    /* Higher quality background for retina displays */
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .hero-section,
+  .image-loading,
+  .image-loaded {
+    transition: none;
+  }
+}

@@ -9,7 +9,6 @@ import {
 
 import type { Route } from "./+types/root";
 import { Navigation } from "./components/navigation";
-import { Footer } from "./components/footer";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -22,6 +21,19 @@ export const links: Route.LinksFunction = () => [
   {
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+  },
+  // Preload critical images for better performance
+  { 
+    rel: "preload", 
+    as: "image", 
+    href: "/app/images/NSBE_Officers-min.webp",
+    type: "image/webp"
+  },
+  { 
+    rel: "preload", 
+    as: "image", 
+    href: "/app/images/NSBE_Logo.png",
+    type: "image/png"
   },
 ];
 
@@ -37,7 +49,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <Navigation />
         {children}
-        <Footer />
         <ScrollRestoration />
         <Scripts />
       </body>

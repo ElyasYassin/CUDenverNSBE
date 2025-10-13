@@ -8,6 +8,8 @@ export function meta({}: Route.MetaArgs) {
   return [
     { title: "NSBE UC Denver - National Society of Black Engineers" },
     { name: "description", content: "Join the NSBE chapter at UC Denver. Connect with Black engineers, access academic resources, and advance your career in STEM." },
+    { name: "theme-color", content: "#009639" },
+    { name: "color-scheme", content: "light dark" },
   ];
 }
 
@@ -44,6 +46,7 @@ function ScrollPopup({ isVisible, onScrollToTop }: { isVisible: boolean; onScrol
 
 export default function Home() {
   const [showScrollPopup, setShowScrollPopup] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,6 +56,23 @@ export default function Home() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Preload the hero image with error handling
+    const img = new Image();
+    img.onload = () => setImageLoaded(true);
+    img.onerror = () => {
+      console.warn('Hero image failed to load, using fallback');
+      setImageLoaded(true); // Still show content with fallback
+    };
+    img.src = NSBE_Officers;
+    
+    // Cleanup function
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -67,11 +87,19 @@ export default function Home() {
       <ScrollPopup isVisible={showScrollPopup} onScrollToTop={scrollToTop} />
       {/* Hero Section */}
       <section 
-        className="relative min-h-[100vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
+        className={`relative min-h-[100vh] flex items-center justify-center hero-section ${
+          imageLoaded ? 'image-loaded' : 'image-loading'
+        }`}
         style={{
-          backgroundImage: `url(${NSBE_Officers})`
-        }}
+          backgroundImage: imageLoaded ? `url(${NSBE_Officers})` : 'none',
+          '--hero-bg': `url(${NSBE_Officers})`
+        } as React.CSSProperties}
+        data-bg-image={NSBE_Officers}
       >
+        {/* Fallback background color while image loads */}
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-br from-black/75 to-black/60 z-10"></div>
         <div className="relative z-20 container mx-auto px-6 text-center">
           <div className="mb-8">
@@ -79,6 +107,8 @@ export default function Home() {
               src={NSBE_Logo} 
               alt="NSBE Logo" 
               className="h-24 md:h-32 mx-auto drop-shadow-2xl"
+              loading="eager"
+              decoding="sync"
             />
           </div>
           <h1 className="text-7xl md:text-8xl font-display font-light text-white mb-6 tracking-tight drop-shadow-2xl">
