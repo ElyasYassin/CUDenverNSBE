@@ -47,45 +47,31 @@ export default function About() {
               Executive Board
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="border-l-4 border-[#009639] pl-6">
+              <div className="border-l-4 border-[#FFD100] pl-6">
                 <h3 className="text-xl font-display font-semibold text-gray-900 dark:text-white mb-2">
-                  Elyas Larfi
+                  Kameren Kelly
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   President
                 </p>
                 <a
-                  href="https://linkedin.com/in/elyaslarfi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#009639] hover:underline underline-offset-4 text-sm"
-                >
-                  LinkedIn →
-                </a>
-              </div>
-              <div className="border-l-4 border-[#FFD100] pl-6">
-                <h3 className="text-xl font-display font-semibold text-gray-900 dark:text-white mb-2">
-                  Maab Ali
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Literacy Strategist
-                </p>
-                <a
                   href="#"
                   className="text-[#009639] hover:underline underline-offset-4 text-sm"
                 >
                   LinkedIn →
                 </a>
               </div>
-              <div className="border-l-4 border-[#EF3340] pl-6">
+              <div className="border-l-4 border-[#009639] pl-6">
                 <h3 className="text-xl font-display font-semibold text-gray-900 dark:text-white mb-2">
-                  Michael Garioto
+                  Elyas Larfi
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Programs Chair
                 </p>
                 <a
-                  href="#"
+                  href="https://linkedin.com/in/elyaslarfi"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-[#009639] hover:underline underline-offset-4 text-sm"
                 >
                   LinkedIn →
