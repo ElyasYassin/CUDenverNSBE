@@ -59,6 +59,14 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    // Add preload link for the hero image
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'image';
+    preloadLink.href = NSBE_Officers;
+    preloadLink.type = 'image/webp';
+    document.head.appendChild(preloadLink);
+
     // Preload the hero image with error handling
     const img = new Image();
     img.onload = () => setImageLoaded(true);
@@ -72,6 +80,7 @@ export default function Home() {
     return () => {
       img.onload = null;
       img.onerror = null;
+      document.head.removeChild(preloadLink);
     };
   }, []);
 
