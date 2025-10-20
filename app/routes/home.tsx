@@ -1,4 +1,5 @@
 import type { Route } from "./+types/home";
+import Board from "./board"
 import { Link } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
@@ -45,6 +46,13 @@ export default function Home() {
             >
               View Events
             </Link>
+            <Link
+              to="/board"
+              className="border-2 border-blue-600 text-blue-600 dark:text-blue-400 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+>
+              Meet the Board
+            </Link>
+
           </div>
         </div>
       </section>
