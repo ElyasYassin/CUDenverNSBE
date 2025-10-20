@@ -4,6 +4,8 @@ export default [
   index("routes/home.tsx"),
   route("about", "routes/about.tsx"),
   route("events", "routes/events.tsx"),
+  route("sponsors", "routes/sponsors.tsx"),
+  route("join", "routes/join.tsx"),
   route("membership", "routes/membership.tsx"),
   route("resources", "routes/resources.tsx"),
   route("contact", "routes/contact.tsx"),

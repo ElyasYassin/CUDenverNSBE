@@ -1,48 +1,145 @@
 import type { Route } from "./+types/home";
 import Board from "./board"
 import { Link } from "react-router";
+import { useState, useEffect } from "react";
+import NSBE_Officers from "../images/NSBE_Officers-min.webp";
+import NSBE_Logo from "../images/NSBE_Logo.png";
 
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "NSBE UC Denver - National Society of Black Engineers" },
     { name: "description", content: "Join the NSBE chapter at UC Denver. Connect with Black engineers, access academic resources, and advance your career in STEM." },
+    { name: "theme-color", content: "#009639" },
+    { name: "color-scheme", content: "light dark" },
   ];
 }
 
-export default function Home() {
+// Scroll Popup Component
+function ScrollPopup({ isVisible, onScrollToTop }: { isVisible: boolean; onScrollToTop: () => void }) {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="mb-8">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-600 rounded-full mb-6">
-              <span className="text-white font-bold text-3xl">N</span>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              Welcome to{" "}
-              <span className="text-blue-600 dark:text-blue-400">NSBE</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto">
-              University of Colorado Denver Chapter
-            </p>
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-              Join the largest student-governed organization dedicated to increasing the number of 
-              culturally responsible Black engineers who excel academically, succeed professionally, 
-              and positively impact the community.
-            </p>
-          </div>
+    <div 
+      className={`fixed bottom-8 right-8 z-50 transition-all duration-500 ease-in-out ${
+        isVisible 
+          ? 'opacity-100 translate-y-0 scale-100' 
+          : 'opacity-0 translate-y-4 scale-95 pointer-events-none'
+      }`}
+    >
+      <button
+        onClick={onScrollToTop}
+        className="group bg-[#009639] hover:bg-[#007a2f] text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 backdrop-blur-sm border border-white/20"
+        aria-label="Scroll to top"
+      >
+        <div className="flex flex-col items-center">
+          <svg 
+            className="w-6 h-6 transform group-hover:-translate-y-1 transition-transform duration-300" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </svg>
+          <span className="text-xs font-medium mt-1 opacity-90">Top</span>
+        </div>
+      </button>
+    </div>
+  );
+}
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+export default function Home() {
+  const [showScrollPopup, setShowScrollPopup] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setShowScrollPopup(scrollTop > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Add preload link for the hero image
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'image';
+    preloadLink.href = NSBE_Officers;
+    preloadLink.type = 'image/webp';
+    document.head.appendChild(preloadLink);
+
+    // Preload the hero image with error handling
+    const img = new Image();
+    img.onload = () => setImageLoaded(true);
+    img.onerror = () => {
+      console.warn('Hero image failed to load, using fallback');
+      setImageLoaded(true); // Still show content with fallback
+    };
+    img.src = NSBE_Officers;
+    
+    // Cleanup function
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+      document.head.removeChild(preloadLink);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  return (
+    <main className="min-h-screen bg-white dark:bg-gray-950">
+      <ScrollPopup isVisible={showScrollPopup} onScrollToTop={scrollToTop} />
+      {/* Hero Section */}
+      <section 
+        className={`relative min-h-[100vh] flex items-center justify-center hero-section ${
+          imageLoaded ? 'image-loaded' : 'image-loading'
+        }`}
+        style={{
+          backgroundImage: imageLoaded ? `url(${NSBE_Officers})` : 'none',
+          '--hero-bg': `url(${NSBE_Officers})`
+        } as React.CSSProperties}
+        data-bg-image={NSBE_Officers}
+      >
+        {/* Fallback background color while image loads */}
+        {!imageLoaded && (
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/75 to-black/60 z-10"></div>
+        <div className="relative z-20 container mx-auto px-6 text-center">
+          <div className="mb-8">
+            <img 
+              src={NSBE_Logo} 
+              alt="NSBE Logo" 
+              className="h-24 md:h-32 mx-auto drop-shadow-2xl"
+              loading="eager"
+              decoding="sync"
+            />
+          </div>
+          <h1 className="text-7xl md:text-8xl font-display font-light text-white mb-6 tracking-tight drop-shadow-2xl">
+            NSBE
+          </h1>
+          <p className="text-2xl md:text-3xl font-display font-light text-[#FFD100] mb-4 drop-shadow-lg">
+            Excellence. Impact. Leadership.
+          </p>
+          <p className="text-lg text-gray-200 mb-12 max-w-2xl mx-auto drop-shadow-md">
+            University of Colorado Denver Chapter
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/membership"
-              className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
+              className="bg-[#FFD100] text-black px-8 py-4 font-display font-semibold hover:scale-105 transition-transform shadow-lg hover:shadow-xl"
             >
-              Join NSBE Today
+              Join NSBE
             </Link>
             <Link
               to="/events"
-              className="border-2 border-blue-600 text-blue-600 dark:text-blue-400 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+              className="border-2 border-white text-white px-8 py-4 font-display font-semibold hover:bg-white hover:text-black transition-all shadow-lg hover:shadow-xl backdrop-blur-sm bg-white/10"
             >
               View Events
             </Link>
@@ -57,210 +154,82 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="bg-white dark:bg-gray-800 py-16">
-        <div className="container mx-auto px-4">
+      {/* About Preview */}
+      <section className="py-24">
+        <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8">
-              Our Mission
-            </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
-              NSBE's mission is to increase the number of culturally responsible Black engineers 
-              who excel academically, succeed professionally, and positively impact the community. 
-              Through our programs and initiatives, we support students in engineering and technology 
-              fields while promoting diversity and inclusion in STEM.
+            <p className="text-2xl md:text-3xl font-display font-light text-gray-900 dark:text-white mb-8 leading-relaxed">
+              NSBE CU Denver empowers Black engineers through leadership, community, and innovation.
             </p>
             <Link
               to="/about"
-              className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:underline"
+              className="text-[#009639] font-semibold hover:underline underline-offset-4 transition-all"
             >
-              Learn More About NSBE
-              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              Learn More →
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white text-center mb-12">
-              Why Join NSBE?
-            </h2>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="text-4xl mb-4">🎓</div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                  Academic Excellence
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Access study groups, tutoring, mentorship programs, and scholarship opportunities 
-                  to support your academic journey.
-                </p>
-              </div>
-
-              <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="text-4xl mb-4">💼</div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                  Career Development
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Connect with industry professionals, attend career workshops, and access 
-                  exclusive internship and job opportunities.
-                </p>
-              </div>
-
-              <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="text-4xl mb-4">🤝</div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                  Strong Community
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Build lasting friendships with like-minded students and professionals 
-                  who share your passion for engineering.
-                </p>
-              </div>
-
-              <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="text-4xl mb-4">🌐</div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                  National Network
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Join a network of over 500 chapters nationwide with access to national 
-                  conferences and industry partnerships.
-                </p>
-              </div>
-
-              <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="text-4xl mb-4">🏆</div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                  Leadership Opportunities
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Develop leadership skills through chapter positions, community outreach, 
-                  and national committee involvement.
-                </p>
-              </div>
-
-              <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="text-4xl mb-4">🎉</div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                  Fun Activities
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Participate in social events, competitions, community service projects, 
-                  and networking activities throughout the year.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Upcoming Events Preview */}
-      <section className="bg-gray-50 dark:bg-gray-800/50 py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                Upcoming Events
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400">
-                Don't miss out on our upcoming meetings, workshops, and networking events.
+      {/* Events Preview */}
+      <section className="bg-gray-50 dark:bg-gray-900 py-24">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-display font-light text-gray-900 dark:text-white mb-12 text-center">
+            Upcoming Events
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="bg-white dark:bg-gray-800 p-8 border-l-4 border-[#009639]">
+              <h3 className="text-xl font-display font-semibold text-gray-900 dark:text-white mb-2">
+                AI in Industry Workshop
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Nov 5, 2025 • ACAD 2504
+              </p>
+              <p className="text-gray-700 dark:text-gray-300">
+                Hands-on session exploring AI career paths.
               </p>
             </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                    <span className="text-blue-600 dark:text-blue-400 font-bold">15</span>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">General Body Meeting</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Jan 15, 2024 • 6:00 PM</p>
-                  </div>
-                </div>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">
-                  Join us for our monthly meeting to discuss upcoming events and connect with fellow engineers.
-                </p>
-              </div>
-
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
-                    <span className="text-green-600 dark:text-green-400 font-bold">22</span>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Career Workshop</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Jan 22, 2024 • 5:30 PM</p>
-                  </div>
-                </div>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">
-                  Learn essential skills for your engineering career including resume building and interview prep.
-                </p>
-              </div>
-
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
-                    <span className="text-purple-600 dark:text-purple-400 font-bold">28</span>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">Networking Night</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Jan 28, 2024 • 7:00 PM</p>
-                  </div>
-                </div>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">
-                  Connect with industry professionals and alumni in an informal networking environment.
-                </p>
-              </div>
+            <div className="bg-white dark:bg-gray-800 p-8 border-l-4 border-[#FFD100]">
+              <h3 className="text-xl font-display font-semibold text-gray-900 dark:text-white mb-2">
+                Community STEM Fair
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Nov 20, 2025 • Student Commons
+              </p>
+              <p className="text-gray-700 dark:text-gray-300">
+                Mentorship and STEM demos for high-schoolers.
+              </p>
             </div>
-
-            <div className="text-center">
-              <Link
-                to="/events"
-                className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-              >
-                View All Events
-                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
+          </div>
+          <div className="text-center mt-12">
+            <Link
+              to="/events"
+              className="text-[#009639] font-semibold hover:underline underline-offset-4 transition-all"
+            >
+              View All Events →
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-blue-600 dark:bg-blue-700 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready to Make a Difference?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Join NSBE today and become part of a community that's shaping the future of engineering.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/membership"
-                className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition-colors"
-              >
-                Join NSBE
-              </Link>
-              <Link
-                to="/contact"
-                className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"
-              >
-                Get in Touch
-              </Link>
-            </div>
+      {/* Sponsors Preview */}
+      <section className="py-24">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-display font-light text-gray-900 dark:text-white mb-12 text-center">
+            Our Sponsors
+          </h2>
+          <div className="flex flex-wrap justify-center items-center gap-12 opacity-40">
+            <div className="text-4xl font-bold text-gray-400">Company</div>
+            <div className="text-4xl font-bold text-gray-400">Company</div>
+            <div className="text-4xl font-bold text-gray-400">Company</div>
+          </div>
+          <div className="text-center mt-12">
+            <Link
+              to="/contact"
+              className="text-[#009639] font-semibold hover:underline underline-offset-4 transition-all"
+            >
+              Become a Sponsor →
+            </Link>
           </div>
         </div>
       </section>
