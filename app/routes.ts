@@ -9,4 +9,5 @@ export default [
   route("membership", "routes/membership.tsx"),
   route("resources", "routes/resources.tsx"),
   route("contact", "routes/contact.tsx"),
+  route("board", "routes/board.tsx")
 ] satisfies RouteConfig;
