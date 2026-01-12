@@ -3,6 +3,9 @@ import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import NSBE_Officers from "../images/NSBE_Officers-min.webp";
 import NSBE_Logo from "../images/NSBE_Logo.png";
+// Sponsor logos - add these images to app/images/sponsors/
+// import MedtronicLogo from "../images/sponsors/medtronic-logo.png";
+// import TrimbleLogo from "../images/sponsors/trimble-logo.png";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -47,13 +50,22 @@ function ScrollPopup({ isVisible, onScrollToTop }: { isVisible: boolean; onScrol
 export default function Home() {
   const [showScrollPopup, setShowScrollPopup] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [overlayOpacity, setOverlayOpacity] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       setShowScrollPopup(scrollTop > 300);
+      
+      // Calculate overlay opacity based on scroll position
+      // Fade in from 0 to 1 over 300px of scrolling
+      const scrollProgress = Math.min(scrollTop / 300, 1); // 0 to 1 over 300px
+      setOverlayOpacity(scrollProgress);
     };
 
+    // Set initial state
+    handleScroll();
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -96,7 +108,7 @@ export default function Home() {
       <ScrollPopup isVisible={showScrollPopup} onScrollToTop={scrollToTop} />
       {/* Hero Section */}
       <section 
-        className={`relative min-h-[100vh] flex items-center justify-center hero-section ${
+        className={`relative min-h-[150vh] flex items-center justify-center hero-section ${
           imageLoaded ? 'image-loaded' : 'image-loading'
         }`}
         style={{
@@ -110,7 +122,13 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
         )}
         <div className="absolute inset-0 bg-gradient-to-br from-black/75 to-black/60 z-10"></div>
-        <div className="relative z-20 container mx-auto px-6 text-center max-w-6xl">
+        <div 
+          className="relative z-20 container mx-auto px-6 text-center max-w-6xl transition-all duration-700 ease-out"
+          style={{ 
+            opacity: overlayOpacity,
+            transform: `translateY(${20 * (1 - overlayOpacity)}px)`
+          }}
+        >
           <div className="mb-8 flex justify-center" style={{ width: '100%', maxWidth: '200px', margin: '0 auto' }}>
             <img 
               src={NSBE_Logo} 
@@ -144,6 +162,24 @@ export default function Home() {
             </Link>
           </div>
         </div>
+        
+        {/* Scroll Indicator */}
+        <div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 transition-opacity duration-500"
+          style={{ opacity: 1 - overlayOpacity }}
+        >
+          <div className="flex flex-col items-center text-white/80 animate-bounce">
+            <span className="text-sm mb-2 font-light">Scroll to explore</span>
+            <svg 
+              className="w-6 h-6" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
+        </div>
       </section>
 
       {/* About Preview */}
@@ -167,40 +203,16 @@ export default function Home() {
       <section className="bg-gray-50 dark:bg-gray-900 py-24">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl font-display font-light text-gray-900 dark:text-white mb-12 text-center">
-            Upcoming Events
+            Upcoming Events - Coming Soon!
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="bg-white dark:bg-gray-800 p-8 border-l-4 border-[#009639]">
-              <h3 className="text-xl font-display font-semibold text-gray-900 dark:text-white mb-2">
-                AI in Industry Workshop
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                Nov 5, 2025 • ACAD 2504
-              </p>
-              <p className="text-gray-700 dark:text-gray-300">
-                Hands-on session exploring AI career paths.
-              </p>
-            </div>
-            <div className="bg-white dark:bg-gray-800 p-8 border-l-4 border-[#FFD100]">
-              <h3 className="text-xl font-display font-semibold text-gray-900 dark:text-white mb-2">
-                Community STEM Fair
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                Nov 20, 2025 • Student Commons
-              </p>
-              <p className="text-gray-700 dark:text-gray-300">
-                Mentorship and STEM demos for high-schoolers.
-              </p>
-            </div>
-          </div>
-          <div className="text-center mt-12">
+          {/* <div className="text-center mt-12">
             <Link
               to="/events"
               className="text-[#009639] font-semibold hover:underline underline-offset-4 transition-all"
             >
               View All Events →
             </Link>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -210,10 +222,41 @@ export default function Home() {
           <h2 className="text-4xl font-display font-light text-gray-900 dark:text-white mb-12 text-center">
             Our Sponsors
           </h2>
-          <div className="flex flex-wrap justify-center items-center gap-12 opacity-40">
-            <div className="text-4xl font-bold text-gray-400">Company</div>
-            <div className="text-4xl font-bold text-gray-400">Company</div>
-            <div className="text-4xl font-bold text-gray-400">Company</div>
+          <div className="flex flex-wrap justify-center items-center gap-12 opacity-60 hover:opacity-100 transition-opacity">
+            {/* Medtronic Logo */}
+            <div className="h-20 w-auto max-w-[220px] flex items-center justify-center">
+              <img 
+                src="/app/images/sponsors/medtronic.png" 
+                alt="Medtronic" 
+                className="h-full w-auto max-w-full object-contain grayscale hover:grayscale-0 transition-all"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const fallback = target.parentElement?.querySelector('.fallback-text') as HTMLElement;
+                  if (fallback) fallback.style.display = 'flex';
+                }}
+              />
+              <div className="fallback-text text-2xl font-bold text-gray-400 hidden items-center justify-center h-full">
+                Medtronic
+              </div>
+            </div>
+            {/* Trimble Logo */}
+            <div className="h-20 w-auto max-w-[220px] flex items-center justify-center">
+              <img 
+                src="/app/images/sponsors/trimble.png" 
+                alt="Trimble" 
+                className="h-full w-auto max-w-full object-contain grayscale hover:grayscale-0 transition-all"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const fallback = target.parentElement?.querySelector('.fallback-text') as HTMLElement;
+                  if (fallback) fallback.style.display = 'flex';
+                }}
+              />
+              <div className="fallback-text text-2xl font-bold text-gray-400 hidden items-center justify-center h-full">
+                Trimble
+              </div>
+            </div>
           </div>
           <div className="text-center mt-12">
             <Link
