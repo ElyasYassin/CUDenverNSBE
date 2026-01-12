@@ -21,11 +21,21 @@ export default function Sponsors() {
               Gold Sponsors
             </h2>
             <div className="grid md:grid-cols-2 gap-12 items-center justify-items-center">
-              <div className="w-64 h-32 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                <span className="text-gray-400 font-display">Company Logo</span>
-              </div>
-              <div className="w-64 h-32 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                <span className="text-gray-400 font-display">Company Logo</span>
+              <div className="h-32 w-auto max-w-[280px] flex items-center justify-center">
+                <img 
+                  src="/app/images/sponsors/trimble.png" 
+                  alt="Trimble" 
+                  className="h-full w-auto max-w-full object-contain grayscale hover:grayscale-0 transition-all"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const fallback = target.parentElement?.querySelector('.fallback-text') as HTMLElement;
+                    if (fallback) fallback.style.display = 'flex';
+                  }}
+                />
+                <div className="fallback-text text-xl font-bold text-gray-400 hidden items-center justify-center h-full">
+                  Trimble
+                </div>
               </div>
             </div>
           </section>
@@ -35,15 +45,9 @@ export default function Sponsors() {
               Silver Sponsors
             </h2>
             <div className="grid md:grid-cols-3 gap-8 items-center justify-items-center">
-              <div className="w-48 h-24 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                <span className="text-gray-400 font-display text-sm">Company Logo</span>
-              </div>
-              <div className="w-48 h-24 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                <span className="text-gray-400 font-display text-sm">Company Logo</span>
-              </div>
-              <div className="w-48 h-24 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                <span className="text-gray-400 font-display text-sm">Company Logo</span>
-              </div>
+              <p className="text-gray-500 dark:text-gray-400 text-sm italic col-span-full">
+                No silver sponsors at this time
+              </p>
             </div>
           </section>
 
@@ -52,17 +56,21 @@ export default function Sponsors() {
               Bronze Sponsors
             </h2>
             <div className="grid md:grid-cols-4 gap-6 items-center justify-items-center">
-              <div className="w-40 h-20 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                <span className="text-gray-400 font-display text-xs">Logo</span>
-              </div>
-              <div className="w-40 h-20 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                <span className="text-gray-400 font-display text-xs">Logo</span>
-              </div>
-              <div className="w-40 h-20 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                <span className="text-gray-400 font-display text-xs">Logo</span>
-              </div>
-              <div className="w-40 h-20 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                <span className="text-gray-400 font-display text-xs">Logo</span>
+              <div className="h-24 w-auto max-w-[200px] flex items-center justify-center">
+                <img 
+                  src="/app/images/sponsors/medtronic.png" 
+                  alt="Medtronic" 
+                  className="h-full w-auto max-w-full object-contain grayscale hover:grayscale-0 transition-all"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const fallback = target.parentElement?.querySelector('.fallback-text') as HTMLElement;
+                    if (fallback) fallback.style.display = 'flex';
+                  }}
+                />
+                <div className="fallback-text text-lg font-bold text-gray-400 hidden items-center justify-center h-full">
+                  Medtronic
+                </div>
               </div>
             </div>
           </section>

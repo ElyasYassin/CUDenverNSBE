@@ -48,7 +48,7 @@ export function Navigation() {
             >
               About
             </Link>
-            <Link
+            {/* <Link
               to="/events"
               className={`text-sm transition-colors ${
                 isActive("/events")
@@ -57,7 +57,7 @@ export function Navigation() {
               }`}
             >
               Events
-            </Link>
+            </Link> */}
             <Link
               to="/sponsors"
               className={`text-sm transition-colors ${
