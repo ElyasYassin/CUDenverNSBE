@@ -16,7 +16,7 @@ export default function About() {
           <img 
             src={NSBE_Logo} 
             alt="NSBE Logo" 
-            className="h-20 w-auto mx-auto mb-8"
+            className="h-20 w-auto max-w-[180px] mx-auto mb-8"
           />
           <h1 className="text-5xl font-display font-light text-gray-900 dark:text-white">
             About NSBE

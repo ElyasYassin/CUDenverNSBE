@@ -17,7 +17,7 @@ export default function Join() {
             <img 
               src={NSBE_Logo} 
               alt="NSBE Logo" 
-              className="h-20 w-auto mx-auto drop-shadow-2xl"
+              className="h-20 w-auto max-w-[180px] mx-auto drop-shadow-2xl"
             />
           </div>
           <h1 className="text-5xl md:text-6xl font-display font-light mb-6">

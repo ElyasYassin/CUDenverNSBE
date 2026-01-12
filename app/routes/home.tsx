@@ -110,23 +110,23 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
         )}
         <div className="absolute inset-0 bg-gradient-to-br from-black/75 to-black/60 z-10"></div>
-        <div className="relative z-20 container mx-auto px-6 text-center">
-          <div className="mb-8">
+        <div className="relative z-20 container mx-auto px-6 text-center max-w-6xl">
+          <div className="mb-8 flex justify-center" style={{ width: '100%', maxWidth: '200px', margin: '0 auto' }}>
             <img 
               src={NSBE_Logo} 
               alt="NSBE Logo" 
-              className="h-24 md:h-32 mx-auto drop-shadow-2xl"
+              className="h-24 md:h-32 w-full max-w-full object-contain drop-shadow-2xl"
               loading="eager"
               decoding="sync"
             />
           </div>
-          <h1 className="text-7xl md:text-8xl font-display font-light text-white mb-6 tracking-tight drop-shadow-2xl">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-light text-white mb-6 tracking-tight drop-shadow-2xl max-w-full">
             NSBE
           </h1>
-          <p className="text-2xl md:text-3xl font-display font-light text-[#FFD100] mb-4 drop-shadow-lg">
+          <p className="text-xl sm:text-2xl md:text-3xl font-display font-light text-[#FFD100] mb-4 drop-shadow-lg max-w-full px-4">
             Excellence. Impact. Leadership.
           </p>
-          <p className="text-lg text-gray-200 mb-12 max-w-2xl mx-auto drop-shadow-md">
+          <p className="text-base sm:text-lg text-gray-200 mb-12 max-w-2xl mx-auto drop-shadow-md px-4">
             University of Colorado Denver Chapter
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

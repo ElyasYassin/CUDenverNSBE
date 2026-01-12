@@ -10,7 +10,7 @@ export function Footer() {
             <img 
               src={NSBE_Logo} 
               alt="NSBE Logo" 
-              className="h-16 w-auto mx-auto"
+              className="h-16 w-auto max-w-[140px] mx-auto"
             />
           </div>
           <div className="flex gap-8">

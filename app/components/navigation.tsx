@@ -14,13 +14,15 @@ export function Navigation() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <img 
-              src={NSBE_Logo} 
-              alt="NSBE Logo" 
-              className="h-8 w-auto"
-            />
+            <div style={{ maxWidth: '50px', width: 'auto' }}>
+              <img 
+                src={NSBE_Logo} 
+                alt="NSBE Logo" 
+                className="h-8 w-full max-w-full object-contain"
+              />
+            </div>
             <span className="text-gray-900 dark:text-white font-display font-light text-xl">
-              NSBE
+              NSBE - CU Denver
             </span>
           </Link>
 
