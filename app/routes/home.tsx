@@ -3,9 +3,8 @@ import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import NSBE_Officers from "../images/NSBE_Officers-min.webp";
 import NSBE_Logo from "../images/NSBE_Logo.png";
-// Sponsor logos - add these images to app/images/sponsors/
-// import MedtronicLogo from "../images/sponsors/medtronic-logo.png";
-// import TrimbleLogo from "../images/sponsors/trimble-logo.png";
+import TrimbleLogo from "../images/sponsors/trimble.png";
+import MedtronicLogo from "../images/sponsors/medtronic.png";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -226,7 +225,7 @@ export default function Home() {
             {/* Medtronic Logo */}
             <div className="h-20 w-auto max-w-[220px] flex items-center justify-center">
               <img 
-                src="/app/images/sponsors/medtronic.png" 
+                src={MedtronicLogo} 
                 alt="Medtronic" 
                 className="h-full w-auto max-w-full object-contain grayscale hover:grayscale-0 transition-all"
                 onError={(e) => {
@@ -243,7 +242,7 @@ export default function Home() {
             {/* Trimble Logo */}
             <div className="h-20 w-auto max-w-[220px] flex items-center justify-center">
               <img 
-                src="/app/images/sponsors/trimble.png" 
+                src={TrimbleLogo} 
                 alt="Trimble" 
                 className="h-full w-auto max-w-full object-contain grayscale hover:grayscale-0 transition-all"
                 onError={(e) => {

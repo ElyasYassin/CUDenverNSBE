@@ -1,4 +1,6 @@
 import type { Route } from "./+types/sponsors";
+import TrimbleLogo from "../images/sponsors/trimble.png";
+import MedtronicLogo from "../images/sponsors/medtronic.png";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -23,7 +25,7 @@ export default function Sponsors() {
             <div className="grid md:grid-cols-2 gap-12 items-center justify-items-center">
               <div className="h-32 w-auto max-w-[280px] flex items-center justify-center">
                 <img 
-                  src="/app/images/sponsors/trimble.png" 
+                  src={TrimbleLogo} 
                   alt="Trimble" 
                   className="h-full w-auto max-w-full object-contain grayscale hover:grayscale-0 transition-all"
                   onError={(e) => {
@@ -58,7 +60,7 @@ export default function Sponsors() {
             <div className="grid md:grid-cols-4 gap-6 items-center justify-items-center">
               <div className="h-24 w-auto max-w-[200px] flex items-center justify-center">
                 <img 
-                  src="/app/images/sponsors/medtronic.png" 
+                  src={MedtronicLogo} 
                   alt="Medtronic" 
                   className="h-full w-auto max-w-full object-contain grayscale hover:grayscale-0 transition-all"
                   onError={(e) => {
