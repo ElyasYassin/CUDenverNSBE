@@ -9,7 +9,7 @@ import AbealPic from "../images/Board/AbealNSBE.jpg"
 import MoPic from "../images/Board/MoNSBE.jpg"
 import AhmedAbdiPic from "../images/Board/AhmedAbdiNSBE.jpg"
 import LynnPic from "../images/Board/LynnNSBE.jpg"
-
+import BushraPic from "../images/Board/BushraNSBE.jpg"
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "About NSBE - National Society of Black Engineers" }, // Meta function says what page is about
@@ -119,7 +119,8 @@ export default function About() {
                   Treasurer
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">               
-                    "Hello my name is raheem I am"
+                    "Hello, my name is Raheem Misherghi. I am a junior at CU Denver studying computer science with a certificate in cybersecurity, and I also work in IT for the university. 
+                    I enjoy pursuing new projects that connect to my interests outside of school, especially when they allow me to apply technical skills in practical ways. Outside of academics and work, I like to travel, play sports, and explore world history."
                   </p>
                   <a
                     href= "https://www.linkedin.com/in/raheem-misherghi/"
@@ -300,7 +301,7 @@ export default function About() {
 
               <div className="border-l-4 border-[#00000] pl-6"> {/* Bushra Hashi */}
                   <img 
-                    /*src={AbealPic} */
+                    src={BushraPic  } 
                     alt="BushraPicture" 
                     className="h-20 w-auto max-w-[180px] mx-auto mb-8"
                   />
@@ -311,7 +312,8 @@ export default function About() {
                   Freshmen Representative
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">               
-                    "Hello my name is raheem I am"
+                    "Hi! I'm Bushra, a first-generation student at CU Denver studying Information Management and Cybersecurity/Info Systems. I am passionate about STEM, leadership, and helping others grow.
+                     When I'm not studying, I love traveling, exploring new cultures, and learning from different prespectives."
                   </p>
                   <a
                     href= "https://www.linkedin.com/in/bushra-hashi/"
