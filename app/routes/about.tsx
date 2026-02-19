@@ -70,8 +70,8 @@ export default function About() {
                   President
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">               
-                    "My name is Kameren Kelly, and I am a senior in mechanical engineering at the University of Colorado Denver, as well as your CU Denver NSBE Chapter President. My goal right after undergrad is to pursue a master's degree in robotics.
-                    After college, I intend to pursue startup companies and roles with a heavy focus on interdisciplinary skills. In my free time, I love to rock climb, do calisthenics workouts, and enjoy media related to Cyberpunk."
+                    "My name is Kameren Kelly, and I am a senior in Mechanical Engineering at the University of Colorado Denver, as well as your CU Denver NSBE Chapter President. My goal right after undergrad is to pursue a master&apos;s degree in robotics.
+                    After college, I intend to pursue opportunities at startup companies and in roles with a heavy focus on interdisciplinary skills. In my free time, I love to rock climb, do calisthenics workouts, and enjoy media related to Cyberpunk."
                   </p>
                 <a
                   href="https://www.linkedin.com/in/kameren-kelly-60a380213/"
@@ -96,8 +96,8 @@ export default function About() {
                   Vice President
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">               
-                    "Hi! I'm Ridwan, a fourth-year Computer Science major at the University of Colorado Denver and the current Vice President of NSBE. Outside of school and NSBE, 
-                    I enjoy staying active in my community, gaming, and spending time outdoors. I'm especially proud of my academic projects, where I've applied machine learning and software 
+                    "Hi! I&apos;m Ridwan, a fourth-year Computer Science major at the University of Colorado Denver and the current Vice President of NSBE. Outside of school and NSBE, 
+                    I enjoy staying active in my community, gaming, and spending time outdoors. I&apos;m especially proud of my academic projects, where I&apos;ve applied machine learning and software 
                     development to build creative, practical solutions while strengthening my technical and problem-solving skills."
                   </p>
                   <a
@@ -125,7 +125,7 @@ export default function About() {
                   Treasurer
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">               
-                    "Hello, my name is Raheem Misherghi. I am a junior at CU Denver studying computer science with a certificate in cybersecurity, and I also work in IT for the university. 
+                    "Hello, my name is Raheem Misherghi. I am a junior at CU Denver studying Computer Science with a certificate in cybersecurity, and I also work in IT for the university. 
                     I enjoy pursuing new projects that connect to my interests outside of school, especially when they allow me to apply technical skills in streamlined ways. Outside of academics and work, I like to travel, play sports, and explore world history."
                   </p>
                   <a
@@ -153,8 +153,11 @@ export default function About() {
                   <h2 className="text-gray-600 dark:text-gray-100 mb-4">
                   Senator
                   </h2>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">            
-                    "Hello, my name is Abeal Gebreziabher and I am a Computer Science major at the University of Colorado Denver. "
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                    "Hi, I&apos;m Abeal Gebreziabher, a Computer Science student at the University of Colorado Denver.
+                    I&apos;m passionate about building technology that helps people, with interests in cybersecurity,
+                    systems, and creative tech projects. Through NSBE, I&apos;m focused on growing as a leader,
+                    supporting others in STEM, and creating more opportunities for underprivileged engineers in tech."
                   </p>
                   <a
                     href= "https://www.linkedin.com/in/abeal-gebreziabher-962bb8354/"
@@ -182,8 +185,8 @@ export default function About() {
                   Senator
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">               
-                    "Hello my name is Ahmed Roble. I am a third year Information Systems major at the Community College of Denver. My academic interests are primarly focused around computer architecture and technology. In my free time, I like to play and watch basketball,
-                    hang out with friends, and watch anime. I also enjoy exploring new tools and technological software to solve everyday problems. 
+                    "Hello, my name is Ahmed Roble. I am a third-year Information Systems major at the Community College of Denver. My academic interests are primarily focused on computer architecture and technology. In my free time, I like to play and watch basketball,
+                    hang out with friends, and watch anime. I also enjoy exploring new tools and software to solve everyday problems."
                   </p>
                   <a
                     href= "https://www.linkedin.com/in/ahmedroble3/"
@@ -213,8 +216,8 @@ export default function About() {
                   Communications
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">               
-                    "Hi everyone, my name is Ahmed Abdi. I'm a junior majoring in Computer Science and Data Science at MSU Denver. I'm passionate about building projects that connect what we learn in class to real-world impact. 
-                    Right now, I'm developing a machine learning library from scratch. Outside of school, I love photography and traveling. This year, I'm primarily focused on helping grow NSBE's community through events, opportunities, and collaboration."
+                    "Hi everyone, my name is Ahmed Abdi. I&apos;m a junior majoring in Computer Science and Data Science at MSU Denver. I&apos;m passionate about building projects that connect what we learn in class to real-world impact. 
+                    Right now, I&apos;m developing a machine learning library from scratch. Outside of school, I love photography and traveling. This year, I&apos;m primarily focused on helping grow NSBE&apos;s community through events, opportunities, and collaboration."
                   </p>
                   <a
                     href= "https://www.linkedin.com/in/ahmed-abdi-ab22532a1/"
@@ -242,9 +245,9 @@ export default function About() {
                   Programs Chair
                 </p>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  "Hi, my name is Elyas Larfi. I'm a senior majoring in Computer Science at CU Denver, 
-                  with experience in AI research, robotics projects, aswell as finishing a software engineering internship with a biotech startup. Outside of academics, I enjoy gaming, traveling, MMA, and photography. I'm especially interested in advancing autonomous systems and healthcare robotics.
-                  I have long-term aspirations of pursuing a PhD and contributing to innovations in autonomous systems and healthcare robotics. "
+                  "Hi, my name is Elyas Larfi. I&apos;m a senior majoring in Computer Science at CU Denver, 
+                  with experience in AI research, robotics projects, as well as completing a software engineering internship with a biotech startup. Outside of academics, I enjoy gaming, traveling, MMA, and photography. I&apos;m especially interested in advancing autonomous systems and healthcare robotics.
+                  I have long-term aspirations of pursuing a PhD and contributing to innovations in autonomous systems and healthcare robotics."
                 </p>
                 <a
                   href="https://linkedin.com/in/elyaslarfi"
@@ -269,7 +272,7 @@ export default function About() {
                   Secretary
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">               
-                    "Hey, my name is Lynn Sayed and I am an Information Systems major with a minor in Computer Engineering. I'm passionate about combining technology, leadership, and equity to create meaningful impact. Outside of school, I love to watch cartoons, draw,
+                    "Hey, my name is Lynn Sayed, and I am an Information Systems major with a minor in Computer Engineering. I&apos;m passionate about combining technology, leadership, and equity to create meaningful impact. Outside of school, I love to watch cartoons, draw,
                     volunteer, and make/edit videos. I am also the oldest sibling of four and have two adorable cats!"
                   </p>
                   <a
@@ -298,9 +301,9 @@ export default function About() {
                   Professional Delegate
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">               
-                    "I'm Mohammed Sultan. I'm studying information systems at the Unversity of Colorado Denver and am currently in my final year. If i were to describe the kind of person I am,
-                    I'd say that I spend a majority of my time moving around rather than sitting, participating in hiking when the weathers ghood, playing basketball whenever opportunities to playu arise, and snowboaridng whenever the snow caves in.
-                    I like being outside with my community, I am really focused on my religion, and love keeping life simple, doing good things, with good views, and meeting good people "
+                    "I&apos;m Mohammed Sultan. I&apos;m studying Information Systems at the University of Colorado Denver and am currently in my final year. If I were to describe the kind of person I am,
+                    I&apos;d say that I spend a majority of my time moving around rather than sitting, hiking when the weather is good, playing basketball whenever opportunities to play arise, and snowboarding whenever snow falls.
+                    I like being outside with my community. I am really focused on my religion and love keeping life simple, doing good things, with good views, and meeting good people."
                   </p>
                   <a
                     href= "https://www.linkedin.com/in/mohammedtahirsultan/"
@@ -328,8 +331,8 @@ export default function About() {
                   Freshmen Representative
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 mb-4">               
-                    "Hi! I'm Bushra, a first-generation student at CU Denver studying Information Management and Cybersecurity/Info Systems. I am passionate about STEM, leadership, and helping others grow.
-                     When I'm not studying, I love traveling, exploring new cultures, and learning from different prespectives."
+                    "Hi! I&apos;m Bushra, a first-generation student at CU Denver studying Information Management and Cybersecurity/Info Systems. I am passionate about STEM, leadership, and helping others grow.
+                     When I&apos;m not studying, I love traveling, exploring new cultures, and learning from different perspectives."
                   </p>
                   <a
                     href= "https://www.linkedin.com/in/bushra-hashi/"
